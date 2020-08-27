@@ -2,27 +2,23 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pylab
 import random
-def rand_walk(inp):
+def rand_walk(inp,n, r=10000):
     if inp == 1:
         prob = [0.5, 0.5]
         start = 0
         positions = [start]
-        rr = np.random.random(100)
+        rr = np.random.random(n)
         downp = rr < prob[0]
         upp = rr > prob[1]
 
         for idownp, iupp in zip(downp, upp):
-            down = idownp and positions[-1] > -10000
-            up = iupp and positions[-1] < 10000
+            down = idownp and positions[-1] > -r
+            up = iupp and positions[-1] < r
             positions.append(positions[-1] - down + up)
         plt.plot(positions)
         plt.show()
     elif inp == 2:
-        
-        n = 100000
 
-        # creating two array for containing x and y coordinate
-        # of size equals to the number of size and filled up with 0's
         x = np.zeros(n)
         y = np.zeros(n)
 
